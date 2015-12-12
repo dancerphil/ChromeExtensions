@@ -40,7 +40,7 @@ function BlockPeople()
               if ($commentlist.eq(i).attr('href').indexOf(userlist[j]) != - 1)
               {
                 $commentlist.eq(i).parents('.zm-item-comment').children().hide();
-                $commentlist.eq(i).parents('.zm-item-comment').text('此处内容已隐藏');
+                $commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
               }
             }
           }
@@ -63,7 +63,7 @@ function BlockPeople()
               if ($commentlist.eq(i).attr('href').indexOf(userlist[j]) != - 1)
               {
                 $commentlist.eq(i).parents('.zm-item-comment').children().hide();
-                $commentlist.eq(i).parents('.zm-item-comment').text('此处内容已隐藏');
+                $commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
               }
             }
           }
@@ -84,7 +84,7 @@ function BlockPeople()
           if ($answerlist.eq(i).find(".author-link").attr('href').indexOf(userlist[j]) != - 1)
           {
             $answerlist.eq(i).children().hide();
-            $answerlist.eq(i).text('此处内容已隐藏');
+            $answerlist.eq(i).append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
           }
         }
       }
@@ -101,7 +101,7 @@ function BlockPeople()
           if ($timeline.eq(i).find(".author-link").attr('href').indexOf(userlist[j]) != - 1)
           {
             $timeline.eq(i).children().hide();
-            $timeline.eq(i).text('此处内容已隐藏');
+            $timeline.eq(i).append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
           }
         }
       }
@@ -111,4 +111,4 @@ function BlockPeople()
   }
 
 
-  console.log("BlockPeople started.")
+  console.log("ZhihuBlocker started.")
