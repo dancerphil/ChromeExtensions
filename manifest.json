@@ -1,0 +1,9 @@
+{"manifest_version":2,
+"name":"ZhihuBlocker",
+"description":"",
+"permissions":["http://*.zhihu.com/"],
+"content_scripts":[{
+	"matches":["http://www.zhihu.com/*"],
+	"js":["jquery-1.8.2.min.js","ZhihuBlocker.js"]
+}],
+"version":"1.0"}
