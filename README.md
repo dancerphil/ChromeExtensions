@@ -8,3 +8,6 @@
 如果你想重载黑名单，你可以在console中输入localStorage.removeItem('UserList');
 
 后续的功能正在规划中。
+
+1.0  : 实现了基本功能
+1.01 : 修复bug #5
