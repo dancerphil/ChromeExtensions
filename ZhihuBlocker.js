@@ -23,7 +23,8 @@ if (localStorage.UserList == undefined) {
 	$('a[name="addcomment"]').click(function() {
 		setTimeout(function() {
 			//屏蔽评论
-			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar') for (i = 0; i < $commentlist.length; i++) {
+			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar');
+			for (i = 0; i < $commentlist.length; i++) {
 				if ($commentlist.eq(i).attr('href') != undefined) {
 					for (j = 0; j < userlist.length; j++) {
 						if ($commentlist.eq(i).attr('href').indexOf(userlist[j]) != -1) {
@@ -40,7 +41,8 @@ if (localStorage.UserList == undefined) {
 	$('a[name="load-more"]').click(function() {
 		setTimeout(function() {
 			//屏蔽评论
-			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar') for (i = 0; i < $commentlist.length; i++) {
+			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar');
+			for (i = 0; i < $commentlist.length; i++) {
 				if ($commentlist.eq(i).attr('href') != undefined) {
 					for (j = 0; j < userlist.length; j++) {
 						if ($commentlist.eq(i).attr('href').indexOf(userlist[j]) != -1) {
