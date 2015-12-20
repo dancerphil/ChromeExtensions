@@ -8,13 +8,13 @@ function BlockPeople() {
 	}
 	localStorage.UserList = username;
 }
-if (window.location.href == 'http://www.zhihu.com/settings/filter') {
+if (window.location.href == 'https://www.zhihu.com/settings/filter') {
 	BlockPeople();
 }
 if (localStorage.UserList == undefined) {
-	if (window.location.href != 'http://www.zhihu.com/settings/filter') {
-		if (confirm('将要跳转到 http://www.zhihu.com/settings/filter 获取屏蔽列表')) {
-			window.location.href = 'http://www.zhihu.com/settings/filter';
+	if (window.location.href != 'https://www.zhihu.com/settings/filter') {
+		if (confirm('将要跳转到 https://www.zhihu.com/settings/filter 获取屏蔽列表')) {
+			window.location.href = 'https://www.zhihu.com/settings/filter';
 		}
 	}
 } else {
@@ -57,7 +57,7 @@ if (localStorage.UserList == undefined) {
 	});
 
 	//屏蔽回答
-	if (window.location.href.indexOf('http://www.zhihu.com/question/') != -1) {
+	if (window.location.href.indexOf('https://www.zhihu.com/question/') != -1) {
 		var $answerlist = $('.zm-item-answer');
 		for (i = 0; i < $answerlist.length; i++) {
 			for (j = 0; j < userlist.length; j++) {
@@ -70,7 +70,7 @@ if (localStorage.UserList == undefined) {
 	}
 
 	//屏蔽时间线
-	if (window.location.href == 'http://www.zhihu.com/') { //zm-item-answer-detail
+	if (window.location.href == 'https://www.zhihu.com/') { //zm-item-answer-detail
 		var $timeline = $('.zm-item-answer-detail');
 		for (i = 0; i < $timeline.length; i++) {
 			for (j = 0; j < userlist.length; j++) {
