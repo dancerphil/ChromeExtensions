@@ -85,9 +85,14 @@ if (localStorage.UserList == undefined) {
 			}
 		}
 	}
+
+	// 1.0.3 TODO
+	var split_href=window.location.href.split("/");
+	if(split_href.length>=6 && split_href[5]=="followers"){
+		console.log("TODO : 屏蔽三无用户");
+	}
+
 	//localStorage.removeItem('UserList');
 }
 
-// 1.0.2 TODO
-// console.log(window.location.href.split("/")[0])
 console.log("ZhihuBlocker started.") 
