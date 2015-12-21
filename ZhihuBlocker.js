@@ -1,6 +1,6 @@
 console.log("ZhihuBlocker starting.")
 
-function BlockPeople() {
+function LoadFilter() {
 	var $userlist = $('.blocked-users .item-card a.avatar-link');
 	var username = new Array($userlist.length);
 	for (i = 0; i < $userlist.length; i++) {
@@ -8,8 +8,21 @@ function BlockPeople() {
 	}
 	localStorage.UserList = username;
 }
+function BlockComment() {
+	var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar');
+	for (i = 0; i < $commentlist.length; i++) {
+		var author_href=$commentlist.eq(i).attr('href');
+		if (author_href==undefined)continue;
+		for (j = 0; j < userlist.length; j++) {
+			if (author_href.indexOf(userlist[j]) != -1) {
+				$commentlist.eq(i).parents('.zm-item-comment').children().hide();
+				$commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
+			}
+		}
+	}
+}
 if (window.location.href == 'https://www.zhihu.com/settings/filter') {
-	BlockPeople();
+	LoadFilter();
 }
 if (localStorage.UserList == undefined) {
 	if (window.location.href != 'https://www.zhihu.com/settings/filter') {
@@ -22,36 +35,14 @@ if (localStorage.UserList == undefined) {
 	//初次加载评论
 	$('a[name="addcomment"]').click(function() {
 		setTimeout(function() {
-			//屏蔽评论
-			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar');
-			for (i = 0; i < $commentlist.length; i++) {
-				var author_href=$commentlist.eq(i).attr('href');
-				if (author_href==undefined)continue;
-				for (j = 0; j < userlist.length; j++) {
-					if (author_href.indexOf(userlist[j]) != -1) {
-						$commentlist.eq(i).parents('.zm-item-comment').children().hide();
-						$commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
-					}
-				}
-			}
+			BlockComment();
 		},
 		3000)
 	})
 	//加载更多评论
 	$('a[name="load-more"]').click(function() {
 		setTimeout(function() {
-			//屏蔽评论
-			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar');
-			for (i = 0; i < $commentlist.length; i++) {
-				var author_href=$commentlist.eq(i).attr('href');
-				if (author_href==undefined)continue;
-				for (j = 0; j < userlist.length; j++) {
-					if (author_href.indexOf(userlist[j]) != -1) {
-						$commentlist.eq(i).parents('.zm-item-comment').children().hide();
-						$commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
-					}
-				}
-			}
+			BlockComment();
 		},
 		10000)
 	});
@@ -108,6 +99,7 @@ if (localStorage.UserList == undefined) {
 		console.log("1.0.3 : in load-more");
 		setTimeout(function() {
 			var $followerlist = $('.zm-profile-card');
+			//console.log($followerlist.length);
 			for (i = 0; i < $followerlist.length; i++) {
 				var follower_data=$followerlist.eq(i).find(".zg-gray a");
 				if(follower_data[3].text=="0 赞同"){
