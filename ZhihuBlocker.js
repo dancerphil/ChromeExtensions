@@ -86,13 +86,41 @@ if (localStorage.UserList == undefined) {
 		}
 	}
 
-	// 1.0.3 TODO
+	// 1.0.3 屏蔽三无用户
 	var split_href=window.location.href.split("/");
-	if(split_href.length>=6 && split_href[5]=="followers"){
-		console.log("TODO : 屏蔽三无用户");
+	if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){
+		var $followerlist = $('.zm-profile-card');
+		for (i = 0; i < $followerlist.length; i++) {
+			var follower_data=$followerlist.eq(i).find(".zg-gray a");
+			if(follower_data[3].text=="0 赞同"){
+				$followerlist.eq(i).children().hide();
+				$followerlist.eq(i).hide();
+			}
+			/* 可拓展选项
+			for (j=0;j<follower_data.length;j++){ //0:关注者,1:提问,2:回答,3:赞同
+				console.log(i+" : "+follower_data[j].text);
+			}
+			*/
+		}
 	}
+	// 1.0.3 TODO 加载更多follower
+	$('a[class="zu-button-more"]').click(function() {//TODO
+		console.log("1.0.3 : in load-more");
+		setTimeout(function() {
+			var $followerlist = $('.zm-profile-card');
+			for (i = 0; i < $followerlist.length; i++) {
+				var follower_data=$followerlist.eq(i).find(".zg-gray a");
+				if(follower_data[3].text=="0 赞同"){
+					$followerlist.eq(i).children().hide();
+					$followerlist.eq(i).hide();
+				}
+			}
+		},
+		10000)
+	});
 
-	//localStorage.removeItem('UserList');
+
+	// localStorage.removeItem('UserList');
 }
 
 console.log("ZhihuBlocker started.") 
