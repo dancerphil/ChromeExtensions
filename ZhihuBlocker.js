@@ -25,12 +25,12 @@ if (localStorage.UserList == undefined) {
 			//屏蔽评论
 			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar');
 			for (i = 0; i < $commentlist.length; i++) {
-				if ($commentlist.eq(i).attr('href') != undefined) {
-					for (j = 0; j < userlist.length; j++) {
-						if ($commentlist.eq(i).attr('href').indexOf(userlist[j]) != -1) {
-							$commentlist.eq(i).parents('.zm-item-comment').children().hide();
-							$commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
-						}
+				var author_href=$commentlist.eq(i).attr('href');
+				if (author_href==undefined)continue;
+				for (j = 0; j < userlist.length; j++) {
+					if (author_href.indexOf(userlist[j]) != -1) {
+						$commentlist.eq(i).parents('.zm-item-comment').children().hide();
+						$commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
 					}
 				}
 			}
@@ -43,12 +43,12 @@ if (localStorage.UserList == undefined) {
 			//屏蔽评论
 			var $commentlist = $('.zm-comment-list .zm-item-comment .zm-item-link-avatar');
 			for (i = 0; i < $commentlist.length; i++) {
-				if ($commentlist.eq(i).attr('href') != undefined) {
-					for (j = 0; j < userlist.length; j++) {
-						if ($commentlist.eq(i).attr('href').indexOf(userlist[j]) != -1) {
-							$commentlist.eq(i).parents('.zm-item-comment').children().hide();
-							$commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
-						}
+				var author_href=$commentlist.eq(i).attr('href');
+				if (author_href==undefined)continue;
+				for (j = 0; j < userlist.length; j++) {
+					if (author_href.indexOf(userlist[j]) != -1) {
+						$commentlist.eq(i).parents('.zm-item-comment').children().hide();
+						$commentlist.eq(i).parents('.zm-item-comment').append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
 					}
 				}
 			}
@@ -60,8 +60,10 @@ if (localStorage.UserList == undefined) {
 	if (window.location.href.indexOf('https://www.zhihu.com/question/') != -1) {
 		var $answerlist = $('.zm-item-answer');
 		for (i = 0; i < $answerlist.length; i++) {
+			var author_href=$answerlist.eq(i).find(".author-link").attr('href');
+			if (author_href==undefined)continue;
 			for (j = 0; j < userlist.length; j++) {
-				if ($answerlist.eq(i).find(".author-link").attr('href').indexOf(userlist[j]) != -1) {
+				if (author_href.indexOf(userlist[j]) != -1) {
 					$answerlist.eq(i).children().hide();
 					$answerlist.eq(i).append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
 				}
@@ -70,11 +72,13 @@ if (localStorage.UserList == undefined) {
 	}
 
 	//屏蔽时间线
-	if (window.location.href == 'https://www.zhihu.com/') { //zm-item-answer-detail
+	if (window.location.href == 'https://www.zhihu.com/') {
 		var $timeline = $('.zm-item-answer-detail');
 		for (i = 0; i < $timeline.length; i++) {
 			for (j = 0; j < userlist.length; j++) {
-				if ($timeline.eq(i).find(".author-link").attr('href').indexOf(userlist[j]) != -1) {
+			var author_href=$timeline.eq(i).find(".author-link").attr('href');
+			if (author_href==undefined)continue;
+				if (author_href.indexOf(userlist[j]) != -1) {
 					$timeline.eq(i).children().hide();
 					$timeline.eq(i).append('<del>此处内容由 ZhihuBlocker 屏蔽</del>');
 				}
@@ -84,4 +88,6 @@ if (localStorage.UserList == undefined) {
 	//localStorage.removeItem('UserList');
 }
 
-console.log("ZhihuBlocker started.") //console.log(window.location.href.split("/")[0])
+// 1.0.2 TODO
+// console.log(window.location.href.split("/")[0])
+console.log("ZhihuBlocker started.") 
