@@ -78,16 +78,19 @@ if (localStorage.UserList == undefined) {
 	$('a[name="addcomment"]').click(function() {
 		setTimeout(function() {
 			Block_Comment();
+
+			//加载更多评论
+			$('a[name="load-more"]').click(function() {
+				setTimeout(function() {
+					Block_Comment();
+				},
+				3000)
+			});
+
+
 		},
 		3000)
 	})
-	//加载更多评论
-	$('a[name="load-more"]').click(function() {//TODO 1.0.4 Bug #9 fixing
-		setTimeout(function() {
-			Block_Comment();
-		},
-		10000)
-	});
 
 	//屏蔽回答
 	if (window.location.href.indexOf('https://www.zhihu.com/question/') != -1) {
