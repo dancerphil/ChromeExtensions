@@ -74,6 +74,7 @@ if (localStorage.UserList == undefined) {
 	}
 } else {
 	var userlist = localStorage.UserList.split(',');
+
 	//初次加载评论
 	$('a[name="addcomment"]').click(function() {
 		setTimeout(function() {
@@ -86,8 +87,6 @@ if (localStorage.UserList == undefined) {
 				},
 				3000)
 			});
-
-
 		},
 		3000)
 	})
@@ -102,9 +101,10 @@ if (localStorage.UserList == undefined) {
 		Block_Timeline();
 	}
 
+/*
 	// 1.0.3 屏蔽三无用户
 	var split_href=window.location.href.split("/");
-	if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){ // https://www.zhihu.com/people/*/followers
+	if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){ // https://www.zhihu.com/people/xxx/followers
 		Block_Follower();
 	}
 	// 1.0.3 加载更多follower
@@ -115,7 +115,7 @@ if (localStorage.UserList == undefined) {
 		},
 		10000)
 	});
-
+*/
 
 	// localStorage.removeItem('UserList');
 }
