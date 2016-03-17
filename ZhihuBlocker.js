@@ -117,9 +117,6 @@ if (localStorage.UserList == undefined) {
 	});
 */
 
-/*
-	$(".btn-backtotop").before('<a data-tip="s$r$屏蔽" class="btn-action" click="Block_Follower()"></a><br>');
-*/
 	// localStorage.removeItem('UserList');
 }
 
