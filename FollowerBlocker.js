@@ -4,11 +4,11 @@ function Block_Follower(){
 	var $followerlist = $('.zm-profile-card');
 	for (i = 0; i < $followerlist.length; i++) {
 		var follower_data=$followerlist.eq(i).find(".zg-gray a");
-		if(follower_data[3].text=="0 赞同"){
-			$followerlist.eq(i).children().hide();
-			$followerlist.eq(i).hide();
-		}
-		if(follower_data[3].text.length <= 6){ // < 1000
+		// if(follower_data[3].text=="0 赞同"){
+		// 	$followerlist.eq(i).children().hide();
+		// 	$followerlist.eq(i).hide();
+		// }
+		if(follower_data[3].text.length < 7){ // length < 7 == < 1000 , length < 6 = < 100 etc.
 			$followerlist.eq(i).children().hide();
 			$followerlist.eq(i).hide();
 		}
