@@ -20,25 +20,9 @@ function Block_Follower(){
 	}
 }
 
-/*
-	// 1.0.3 屏蔽三无用户
-	var split_href=window.location.href.split("/");
-	if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){ // https://www.zhihu.com/people/xxx/followers
-		Block_Follower();
-	}
-	// 1.0.3 加载更多follower
-	$('a[class="zu-button-more"]').click(function() {//TODO 1.0.4 Bug #9 fixing
-		console.log("1.0.3 : in load-more");
-		setTimeout(function() {
-			Block_Follower();
-		},
-		10000)
-	});
-*/
-
 var split_href=window.location.href.split("/");
-if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){
 // https://www.zhihu.com/people/xxx/followers
+if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){
 	var followerBtn = $('<a>', {
 				href: 'javascript:void(0);',
 				tabindex: '-1',
@@ -50,29 +34,15 @@ if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_
 	$('<br>').insertBefore($('.btn-backtotop'))
 }
 
-
-
-
-
-
-
-
-
-var $btnSettings = $('<li>')
-	.append(
-		$('<a>', {
-			href: 'javascript:void(0);',
-			tabindex: '-1'
-		})
-		.append($('<i>', {
-			'class': 'zg-icon zg-icon-dd-settings izhihu-settings'
-		}))
-		.append('THIS?')
-	)
-	.click(function() {
-		$('#zh-top-link-logo').remove()
-	})
-	.insertBefore($('ul#top-nav-profile-dropdown li:last'))
-
+/*
+	// 1.0.3 加载更多follower
+	$('a[class="zu-button-more"]').click(function() {//TODO 1.0.4 Bug #9 fixing
+		console.log("1.0.3 : in load-more");
+		setTimeout(function() {
+			Block_Follower();
+		},
+		10000)
+	});
+*/
 
 console.log("FollowerBlocker started.") 
