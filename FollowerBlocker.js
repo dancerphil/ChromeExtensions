@@ -1,5 +1,3 @@
-console.log("FollowerBlocker starting.")
-
 function Block_Follower(){
 	var $followerlist = $('.zm-profile-card');
 	for (i = 0; i < $followerlist.length; i++) {
@@ -23,6 +21,7 @@ function Block_Follower(){
 var split_href=window.location.href.split("/");
 // https://www.zhihu.com/people/xxx/followers
 if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){
+	console.log("[ZhihuBlocker]: Follower Blocker Started.") 
 	var followerBtn = $('<a>', {
 				href: 'javascript:void(0);',
 				tabindex: '-1',
@@ -45,4 +44,3 @@ if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_
 	});
 */
 
-console.log("FollowerBlocker started.") 

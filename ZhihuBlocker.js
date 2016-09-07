@@ -1,5 +1,3 @@
-console.log("ZhihuBlocker starting.")
-
 function Load_Filter() {
 	var $userlist = $('.blocked-users .item-card a.avatar-link');
 	var username = new Array($userlist.length);
@@ -62,11 +60,13 @@ function Block_Follower(){
 		*/
 	}
 }
-
+if (window.location.href.indexOf('https://www.zhihu.com/') != -1){
+	console.log("[ZhihuBlocker]: Started.");
+}
 if (window.location.href == 'https://www.zhihu.com/settings/filter') {
 	Load_Filter();
 }
-if (localStorage.UserList == undefined) {
+if (window.location.href.indexOf('https://www.zhihu.com/') != -1 && localStorage.UserList == undefined) {
 	if (window.location.href != 'https://www.zhihu.com/settings/filter') {
 		if (confirm('将要跳转到 https://www.zhihu.com/settings/filter 获取屏蔽列表')) {
 			window.location.href = 'https://www.zhihu.com/settings/filter';
@@ -120,4 +120,4 @@ if (localStorage.UserList == undefined) {
 	// localStorage.removeItem('UserList');
 }
 
-console.log("ZhihuBlocker started.") 
+__z_z__.vu = () => ({Id: ()=>''})
