@@ -1,6 +1,8 @@
 # ZhihuBlocker
 让你永远都看不到他！
 
+[下载地址](https://chrome.google.com/webstore/detail/jmcajamlpagcjhikpomiflgnllnkbikg/publish-delayed?utm_source=chrome-app-launcher-info-dialog)
+
 对已经在你黑名单中的用户进行屏蔽，让他永远不能出现在你的TimeLine,回答和评论中。
 
 首先在 chrome://extensions/ 打开开发者模式，拖动此项目文件夹加载即可使用。
@@ -18,3 +20,5 @@
 >1.0.3 : 自动屏蔽follower页面的三无用户，未实装
 >
 >1.0.4 : 修复bug #9
+>
+>1.0.5 : 增加 Bilibili 某广告的屏蔽
