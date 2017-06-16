@@ -62,62 +62,61 @@ function Block_Follower(){
 }
 if (window.location.href.indexOf('https://www.zhihu.com/') != -1){
 	console.log("[ZhihuBlocker]: Started.");
-}
-if (window.location.href == 'https://www.zhihu.com/settings/filter') {
-	Load_Filter();
-}
-if (window.location.href.indexOf('https://www.zhihu.com/') != -1 && localStorage.UserList == undefined) {
-	if (window.location.href != 'https://www.zhihu.com/settings/filter') {
-		if (confirm('将要跳转到 https://www.zhihu.com/settings/filter 获取屏蔽列表')) {
-			window.location.href = 'https://www.zhihu.com/settings/filter';
+	if (window.location.href == 'https://www.zhihu.com/settings/filter') {
+		Load_Filter();
+	}
+	if (window.location.href.indexOf('https://www.zhihu.com/') != -1 && localStorage.UserList == undefined) {
+		if (window.location.href != 'https://www.zhihu.com/settings/filter') {
+			if (confirm('将要跳转到 https://www.zhihu.com/settings/filter 获取屏蔽列表')) {
+				window.location.href = 'https://www.zhihu.com/settings/filter';
+			}
 		}
-	}
-} else {
-	var userlist = localStorage.UserList.split(',');
+	} else {
+		var userlist = localStorage.UserList.split(',');
 
-	//初次加载评论
-	$('a[name="addcomment"]').click(function() {
-		setTimeout(function() {
-			Block_Comment();
+		//初次加载评论
+		$('a[name="addcomment"]').click(function() {
+			setTimeout(function() {
+				Block_Comment();
 
-			//加载更多评论
-			$('a[name="load-more"]').click(function() {
-				setTimeout(function() {
-					Block_Comment();
-				},
-				3000)
-			});
-		},
-		3000)
-	})
+				//加载更多评论
+				$('a[name="load-more"]').click(function() {
+					setTimeout(function() {
+						Block_Comment();
+					},
+					3000)
+				});
+			},
+			3000)
+		})
 
-	//屏蔽回答
-	if (window.location.href.indexOf('https://www.zhihu.com/question/') != -1) {
-		Block_Answer();
-	}
+		//屏蔽回答
+		if (window.location.href.indexOf('https://www.zhihu.com/question/') != -1) {
+			Block_Answer();
+		}
 
-	//屏蔽时间线
-	if (window.location.href == 'https://www.zhihu.com/') {
-		Block_Timeline();
-	}
+		//屏蔽时间线
+		if (window.location.href == 'https://www.zhihu.com/') {
+			Block_Timeline();
+		}
 
-/*
-	// 1.0.3 屏蔽三无用户
-	var split_href=window.location.href.split("/");
-	if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){ // https://www.zhihu.com/people/xxx/followers
-		Block_Follower();
-	}
-	// 1.0.3 加载更多follower
-	$('a[class="zu-button-more"]').click(function() {//TODO 1.0.4 Bug #9 fixing
-		console.log("1.0.3 : in load-more");
-		setTimeout(function() {
+	/*
+		// 1.0.3 屏蔽三无用户
+		var split_href=window.location.href.split("/");
+		if(window.location.href.indexOf('https://www.zhihu.com/people/') != -1 && split_href.length>=6 && split_href[5]=="followers"){ // https://www.zhihu.com/people/xxx/followers
 			Block_Follower();
-		},
-		10000)
-	});
-*/
+		}
+		// 1.0.3 加载更多follower
+		$('a[class="zu-button-more"]').click(function() {//TODO 1.0.4 Bug #9 fixing
+			console.log("1.0.3 : in load-more");
+			setTimeout(function() {
+				Block_Follower();
+			},
+			10000)
+		});
+	*/
 
-	// localStorage.removeItem('UserList');
+		// localStorage.removeItem('UserList');
+	}
+	__z_z__.vu = () => ({Id: ()=>''})
 }
-
-__z_z__.vu = () => ({Id: ()=>''})
