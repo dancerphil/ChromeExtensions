@@ -3,9 +3,20 @@ var scpData = {"scp-001":"等待解密[已锁]","scp-002":"“生活”室","scp
 if (window.location.href.indexOf('http://scp-wiki-cn.wikidot.com/') != -1) {
 	console.log("[ZhihuBlocker]: SCP Additional Information Added.");
 	var key = window.location.href.slice(31);
+	var number = key.slice(4);
+	var nextHref = window.location.href.slice(0, 35) + leftPad(parseInt(number) + 1, number.length, 0);
+	var lastHref = window.location.href.slice(0, 35) + leftPad(parseInt(number) - 1, number.length, 0);
 	var pattern = new RegExp("scp-[0-9]")
 	if(pattern.test(key)){
 		var $pageTitle = $('#page-title');
 		$pageTitle.text($pageTitle.text()+scpData[key]);
+		var $pageContent = $('#page-content');
+		var style = 'style="font-size: 130%;"';
+		$pageContent.after(`
+			<br/>
+			<a ${style} href="${lastHref}">上一页</a>
+			&nbsp;&nbsp;
+			<a ${style} href="${nextHref}">下一页</a>
+		`);
 	}
 }
