@@ -6,12 +6,12 @@
 	"content_scripts": [{
 		"matches": ["http://www.zhihu.com/*", "https://www.zhihu.com/*", "http://www.bilibili.com/*", "http://scp-wiki-cn.wikidot.com/*"],
 		"js": [
-			"jquery-1.8.2.min.js",
+			"jquery.min.js",
 			"left-pad.js",
 			"ZhihuBlocker.js",
 			"FollowerBlocker.js",
 			"Bilibili.js",
 			"scp.js"]
 	}],
-	"version": "1.0.6.0"
+	"version": "1.0.6.2"
 }
