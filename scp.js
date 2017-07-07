@@ -5,7 +5,9 @@ var scpPattern = new RegExp("http://scp-wiki-cn.wikidot.com/scp-[0-9]")
 if (scpPattern.test(window.location.href)) {
 	console.log("[ZhihuBlocker]: SCP Additional Information Added.");
 	var addTitle = function(titleElement, key) {
-		titleElement.text(titleElement.text()+scpData[key]);
+		if(scpData[key]) {
+			titleElement.text(titleElement.text() + scpData[key]);
+		}
 	}
 	var beforeShow = function(number, titleElement, contentElement) {
 		var key = 'scp-' + number;
