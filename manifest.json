@@ -18,13 +18,13 @@
 			"https://tour.go-zh.org/*"
 		],
 		"js": [
-			"jquery.min.js",
-			"left-pad.js",
-			"ZhihuBlocker.js",
-			"FollowerBlocker.js",
-			"Bilibili.js",
-			"scp.js",
-			"go.js"]
+			"src/jquery.min.js",
+			"src/left-pad.js",
+			"src/ZhihuBlocker.js",
+			"src/FollowerBlocker.js",
+			"src/Bilibili.js",
+			"src/scp.js",
+			"src/go.js"]
 	}],
 	"version": "1.0.7"
 }
