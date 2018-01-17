@@ -7,7 +7,8 @@
 		"https://*.zhihu.com/",
 		"http://www.bilibili.com/",
 		"http://scp-wiki-cn.wikidot.com/",
-		"https://tour.go-zh.org/"
+		"https://tour.go-zh.org/",
+		"https://*.douban.com/"
 	],
 	"content_scripts": [{
 		"matches": [
@@ -15,7 +16,8 @@
 			"https://www.zhihu.com/*",
 			"http://www.bilibili.com/*",
 			"http://scp-wiki-cn.wikidot.com/*",
-			"https://tour.go-zh.org/*"
+			"https://tour.go-zh.org/*",
+			"https://*.douban.com/*"
 		],
 		"js": [
 			"src/jquery.min.js",
@@ -24,7 +26,8 @@
 			"src/FollowerBlocker.js",
 			"src/Bilibili.js",
 			"src/scp.js",
-			"src/go.js"]
+			"src/go.js",
+			"src/douban.js"]
 	}],
-	"version": "1.0.7"
+	"version": "1.0.8"
 }
