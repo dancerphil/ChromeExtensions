@@ -3,10 +3,8 @@
         "outDir": "./es",
         "strict": true,
         "declaration": true,
-        "target": "es6",
-        "moduleResolution": "node",
         "lib": ["esnext", "dom"],
-        "jsx": "react-jsx",
+        "strictNullChecks": false,
         "skipLibCheck": true
     },
     "include": [

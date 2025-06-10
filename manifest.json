@@ -11,7 +11,7 @@
 		"commands"
 	],
 	"background": {
-		"service_worker": "src/service-worker.js",
+		"service_worker": "es/service-worker.js",
 		"type": "module"
 	},
 	"commands": {

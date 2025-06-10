@@ -1,4 +1,4 @@
-const getTabName = (hostname) => {
+const getTabName = (hostname: string) => {
     const segment = hostname.split('.');
     for (let i = segment.length - 1; i >= 0; i--) {
         if (segment[i].length > 3) {
@@ -10,17 +10,13 @@ const getTabName = (hostname) => {
 
 const group = async () => {
     const tabs = await chrome.tabs.query({});
-    const group = {};
-    const tabsWithName = tabs.map((tab) => {
+    const group: Record<string, number[]> = {};
+    tabs.forEach((tab) => {
         const tabName = getTabName(new URL(tab.url).hostname);
         group[tabName] = group[tabName] ?? [];
         group[tabName].push(tab.id);
-        return ({
-            tab,
-            tabName,
-        });
     });
-    let other = [];
+    let other: number[] = [];
     for (const name in group) {
         if (group[name].length >= 5) {
             const groupId = await chrome.tabs.group({
