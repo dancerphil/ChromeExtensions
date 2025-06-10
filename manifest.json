@@ -1,33 +1,26 @@
 {
-	"manifest_version": 2,
-	"name": "Zhihu Blocker",
-	"description": "Web版知乎。屏蔽黑名单用户发布的内容。[ www.zhihu.com] 源码：https://github.com/dancerphil/ZhihuBlocker",
+	"manifest_version": 3,
+	"name": "Open extension API reference",
+	"version": "1.0.0",
+	"icons": {
+		"128": "icon.png"
+	},
 	"permissions": [
-		"http://*.zhihu.com/",
-		"https://*.zhihu.com/",
-		"http://www.bilibili.com/",
-		"http://scp-wiki-cn.wikidot.com/",
-		"https://tour.go-zh.org/",
-		"https://*.douban.com/"
+		"tabs",
+		"tabGroups",
+		"commands"
 	],
-	"content_scripts": [{
-		"matches": [
-			"http://www.zhihu.com/*",
-			"https://www.zhihu.com/*",
-			"http://www.bilibili.com/*",
-			"http://scp-wiki-cn.wikidot.com/*",
-			"https://tour.go-zh.org/*",
-			"https://*.douban.com/*"
-		],
-		"js": [
-			"src/jquery.min.js",
-			"src/left-pad.js",
-			"src/ZhihuBlocker.js",
-			"src/FollowerBlocker.js",
-			"src/Bilibili.js",
-			"src/scp.js",
-			"src/go.js",
-			"src/douban.js"]
-	}],
-	"version": "1.0.8"
+	"background": {
+		"service_worker": "service-worker.js",
+		"type": "module"
+	},
+	"commands": {
+		"split": {
+			"suggested_key": {
+				"default": "Ctrl+E",
+				"mac": "Command+E"
+			},
+			"description": "分离标签"
+		}
+	}
 }
