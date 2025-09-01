@@ -8,7 +8,9 @@
 	"permissions": [
 		"tabs",
 		"tabGroups",
-		"commands"
+		"commands",
+		"scripting",
+		"activeTab"
 	],
 	"background": {
 		"service_worker": "es/service-worker.js",
@@ -28,6 +30,13 @@
 				"mac": "Command+R"
 			},
 			"description": "分组"
+		},
+		"toggleEditableMode": {
+			"suggested_key": {
+				"default": "Ctrl+U",
+				"mac": "Command+U"
+			},
+			"description": "切换可编辑模式"
 		}
 	}
 }
