@@ -6,7 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint .",
-    "build": "vite build && tsc && node scripts/copyPublic.js"
+    "build": "vite build && node scripts/copyPublic.js"
   },
   "author": "Cong Zhang <dancerphil1994@gmail.com>",
   "license": "MIT",

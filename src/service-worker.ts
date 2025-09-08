@@ -20,9 +20,13 @@ const group = async () => {
         group[tabName] = group[tabName] ?? [];
         group[tabName].push(tab.id);
     });
+
+    // 从存储中获取分组阈值，默认为 5
+    const {groupThreshold = 5} = await chrome.storage.sync.get(['groupThreshold']);
+
     let other: number[] = [];
     for (const name in group) {
-        if (group[name].length >= 5) {
+        if (group[name].length >= groupThreshold) {
             const groupId = await chrome.tabs.group({
                 tabIds: group[name],
             });
