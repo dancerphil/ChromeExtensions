@@ -19,21 +19,21 @@
 		"type": "module"
 	},
 	"commands": {
-		"ungroup": {
+		"1_ungroup": {
 			"suggested_key": {
 				"default": "Ctrl+E",
 				"mac": "Command+E"
 			},
 			"description": "取消分组"
 		},
-		"group": {
+		"2_group": {
 			"suggested_key": {
 				"default": "Ctrl+R",
 				"mac": "Command+R"
 			},
 			"description": "分组"
 		},
-		"toggleEditableMode": {
+		"3_toggleEditableMode": {
 			"suggested_key": {
 				"default": "Ctrl+U",
 				"mac": "Command+U"

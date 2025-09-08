@@ -108,13 +108,13 @@ const toggleEditableMode = async () => {
 };
 
 chrome.commands.onCommand.addListener((command) => {
-    if (command === 'group') {
-        group();
-    }
-    if (command === 'ungroup') {
+    if (command === '1_ungroup') {
         ungroup();
     }
-    if (command === 'toggleEditableMode') {
+    if (command === '2_group') {
+        group();
+    }
+    if (command === '3_toggleEditableMode') {
         toggleEditableMode();
     }
 });
