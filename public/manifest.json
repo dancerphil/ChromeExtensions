@@ -20,16 +20,12 @@
 	},
 	"commands": {
 		"1_ungroup": {
-			"suggested_key": {
-				"default": "Ctrl+E",
-				"mac": "Command+E"
-			},
 			"description": "取消分组"
 		},
 		"2_group": {
 			"suggested_key": {
-				"default": "Ctrl+R",
-				"mac": "Command+R"
+				"default": "Ctrl+E",
+				"mac": "Command+E"
 			},
 			"description": "分组"
 		},
