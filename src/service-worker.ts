@@ -13,6 +13,9 @@ const group = async () => {
     const tabs = await chrome.tabs.query({});
     const group: Record<string, number[]> = {};
     tabs.forEach((tab) => {
+        if (!tab.url) {
+            return;
+        }
         const tabName = getTabName(new URL(tab.url).hostname);
         group[tabName] = group[tabName] ?? [];
         group[tabName].push(tab.id);

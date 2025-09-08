@@ -1,9 +1,12 @@
 {
     "compilerOptions": {
-        "outDir": "./es",
+        "outDir": "./dist",
+        "module": "NodeNext",
+        "moduleResolution": "nodenext",
         "strict": true,
         "declaration": true,
         "lib": ["esnext", "dom"],
+        "jsx": "preserve",
         "strictNullChecks": false,
         "skipLibCheck": true
     },
