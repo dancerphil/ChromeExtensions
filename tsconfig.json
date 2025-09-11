@@ -1,11 +1,24 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "module": "NodeNext",
-        "moduleResolution": "nodenext",
+        "module": "esnext",
+        "target": "es2018",
+        "noEmit": true,
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+        ],
+        "sourceMap": true,
+        "moduleResolution": "bundler",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+        "types": ["vite/client", "chrome"],
+        "allowJs": false,
         "strict": true,
         "declaration": true,
-        "lib": ["esnext", "dom"],
         "jsx": "preserve",
         "strictNullChecks": false,
         "skipLibCheck": true
