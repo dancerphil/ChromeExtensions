@@ -17,7 +17,7 @@ export const group = async () => {
     const group: Record<string, number[]> = {};
     const other: number[] = [];
     tabs.forEach((tab) => {
-        if (!tab.url) {
+        if (!tab.id || !tab.url) {
             return;
         }
         if (fixedRegex && new RegExp(fixedRegex).test(tab.url)) {
@@ -34,7 +34,7 @@ export const group = async () => {
             const groupId = await chrome.tabs.group({
                 tabIds: group[name],
             });
-            chrome.tabGroups.update(groupId, {
+            await chrome.tabGroups.update(groupId, {
                 collapsed: true,
                 title: name,
             });
@@ -48,26 +48,28 @@ export const group = async () => {
         const fixedGroupId = await chrome.tabs.group({
             tabIds: fixed,
         });
-        chrome.tabGroups.update(fixedGroupId, {
+        await chrome.tabGroups.update(fixedGroupId, {
             collapsed: false,
             title: 'fixed',
             color: 'red',
         });
-        chrome.tabGroups.move(fixedGroupId, {
+        await chrome.tabGroups.move(fixedGroupId, {
             index: 1,
         });
     }
 
-    const otherGroupId = await chrome.tabs.group({
-        tabIds: other,
-    });
-    chrome.tabGroups.update(otherGroupId, {
-        collapsed: false,
-        title: '其他',
-    });
-    chrome.tabGroups.move(otherGroupId, {
-        index: -1,
-    });
+    if (other.length > 0) {
+        const otherGroupId = await chrome.tabs.group({
+            tabIds: other,
+        });
+        await chrome.tabGroups.update(otherGroupId, {
+            collapsed: false,
+            title: '其他',
+        });
+        await chrome.tabGroups.move(otherGroupId, {
+            index: -1,
+        });
+    }
 };
 
 export const ungroup = async () => {
