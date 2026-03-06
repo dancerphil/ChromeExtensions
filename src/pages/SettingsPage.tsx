@@ -1,12 +1,19 @@
 import {useEffect, useState} from 'react';
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
-import {Input} from '@/components/ui/input';
-import {Label} from '@/components/ui/label';
-import {Button} from '@/components/ui/button';
-import {Badge} from '@/components/ui/badge';
-import {Settings, Save, Tags as Tabs, CheckCircle} from 'lucide-react';
-import {Separator} from '@/components/ui/separator';
+import {
+    Alert,
+    Badge,
+    Button,
+    Card,
+    Group,
+    NumberInput,
+    Stack,
+    Text,
+    TextInput,
+    Title,
+} from '@mantine/core';
+import {CheckCircle2, Save, Settings, Tags} from 'lucide-react';
 import {ShortCutInfo} from '@/pages/ShortcutInfo';
+import styles from './SettingsPage.module.css';
 
 export const SettingsPage = () => {
     const [groupThreshold, setGroupThreshold] = useState(5);
@@ -14,18 +21,14 @@ export const SettingsPage = () => {
     const [saved, setSaved] = useState(false);
 
     useEffect(() => {
-        // 加载保存的配置
-        chrome.storage.sync.get(
-            ['groupThreshold', 'fixedRegex'],
-            (result) => {
-                if (result.groupThreshold) {
-                    setGroupThreshold(result.groupThreshold);
-                }
-                if (result.fixedRegex) {
-                    setFixedRegex(result.fixedRegex);
-                }
-            },
-        );
+        chrome.storage.sync.get(['groupThreshold', 'fixedRegex'], (result) => {
+            if (result.groupThreshold) {
+                setGroupThreshold(result.groupThreshold);
+            }
+            if (result.fixedRegex) {
+                setFixedRegex(result.fixedRegex);
+            }
+        });
     }, []);
 
     const handleSave = () => {
@@ -36,107 +39,80 @@ export const SettingsPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-            <div className="container mx-auto px-4 py-8 max-w-2xl">
-                {/* Header */}
-                <div className="flex items-center gap-3 mb-8">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                        <Settings className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                        <h1 className="text-3xl font-bold text-foreground">扩展设置</h1>
-                        <p className="text-muted-foreground mt-1">配置您的浏览器扩展偏好设置</p>
-                    </div>
-                </div>
+        <div className={styles.page}>
+            <Stack className={styles.container} gap="lg">
+                <Group gap="sm">
+                    <Settings size={26} className={styles.headerIcon} />
+                    <Stack gap={2}>
+                        <Title order={2}>扩展设置</Title>
+                        <Text c="dimmed" size="sm">配置您的浏览器扩展偏好设置</Text>
+                    </Stack>
+                </Group>
 
-                {/* Main Settings Card */}
-                <Card className="shadow-lg border-0 bg-card/50 backdrop-blur-sm">
-                    <CardHeader className="pb-4">
-                        <CardTitle className="flex items-center gap-2 text-xl">
-                            <Tabs className="h-5 w-5 text-primary" />
-                            标签页管理
-                        </CardTitle>
-                        <CardDescription>自定义标签页的分组和固定行为</CardDescription>
-                    </CardHeader>
+                <Card radius="md" p="lg" className={styles.card}>
+                    <Stack gap="lg">
+                        <Group justify="space-between" align="center">
+                            <Group gap={8}>
+                                <Tags size={18} />
+                                <Title order={4}>标签页管理</Title>
+                            </Group>
+                            <Text size="sm" c="dimmed">自定义标签页的分组和固定行为</Text>
+                        </Group>
 
-                    <CardContent className="space-y-6">
                         <ShortCutInfo />
-                        <Separator />
 
-                        {/* Tab Group Threshold Setting */}
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between">
-                                <Label htmlFor="tab-threshold" className="text-base font-medium">
-                                    标签分组阈值
-                                </Label>
-                                <Badge variant="secondary" className="text-xs">
-                                    自动分组
-                                </Badge>
-                            </div>
-                            <p className="text-sm text-muted-foreground leading-relaxed">当同一网站的标签数量达到此数值时自动分组</p>
-                            <div className="flex items-center gap-3">
-                                <Input
-                                    id="tab-threshold"
-                                    type="number"
-                                    min="2"
-                                    max="20"
+                        <Stack gap="xs">
+                            <Group justify="space-between" align="center">
+                                <Text fw={600}>标签分组阈值</Text>
+                                <Badge variant="light" color="indigo">自动分组</Badge>
+                            </Group>
+                            <Text size="sm" c="dimmed">当同一网站的标签数量达到此数值时自动分组</Text>
+                            <Group>
+                                <NumberInput
                                     value={groupThreshold}
-                                    onChange={e => setGroupThreshold(Number(e.target.value))}
-                                    className="w-24 text-center font-mono"
+                                    onChange={value => setGroupThreshold(Number(value) || 2)}
+                                    min={2}
+                                    max={20}
+                                    allowDecimal={false}
+                                    className={styles.input}
                                 />
-                                <span className="text-sm text-muted-foreground">个标签页</span>
-                            </div>
-                        </div>
+                                <Text className={styles.inlineLabel}>个标签页</Text>
+                            </Group>
+                        </Stack>
 
-                        <Separator />
-
-                        {/* Fixed Tabs Setting */}
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between">
-                                <Label htmlFor="fixed-tabs" className="text-base font-medium">
-                                    固定标签
-                                </Label>
-                                <Badge variant="outline" className="text-xs">
-                                    高级设置
-                                </Badge>
-                            </div>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                                匹配的标签将始终被分到"fixed"分组中，支持正则
-                            </p>
-                            <Input
-                                id="fixed-tabs"
-                                placeholder="例如：github\\.com|stackoverflow\\.com"
+                        <Stack gap="xs">
+                            <Group justify="space-between" align="center">
+                                <Text fw={600}>固定标签</Text>
+                                <Badge variant="outline" color="gray">高级设置</Badge>
+                            </Group>
+                            <Text size="sm" c="dimmed">匹配的标签将始终被分到"fixed"分组中，支持正则</Text>
+                            <TextInput
                                 value={fixedRegex}
-                                onChange={e => setFixedRegex(e.target.value)}
-                                className="font-mono text-sm"
+                                placeholder="例如：github\\.com|stackoverflow\\.com"
+                                onChange={e => setFixedRegex(e.currentTarget.value)}
                             />
-                            <p className="text-xs text-muted-foreground">使用正则表达式匹配网站域名，多个规则用 | 分隔</p>
-                        </div>
-                    </CardContent>
+                            <Text size="xs" c="dimmed">使用正则表达式匹配网站域名，多个规则用 | 分隔</Text>
+                        </Stack>
+                    </Stack>
                 </Card>
 
-                {/* Success Notification */}
                 {saved && (
-                    <div className="mt-8 mb-6 p-4 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg animate-in slide-in-from-top-2 duration-300">
-                        <div className="flex items-center gap-3">
-                            <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                            <p className="text-sm font-medium text-green-900 dark:text-green-100">设置保存成功！</p>
-                        </div>
-                    </div>
+                    <Alert
+                        className={styles.successAlert}
+                        variant="light"
+                        color="green"
+                        icon={<CheckCircle2 size={16} />}
+                    >
+                        设置保存成功！
+                    </Alert>
                 )}
 
-                {/* Save Button */}
-                <div className="mt-8 flex justify-center">
-                    <Button
-                        onClick={handleSave}
-                        size="lg"
-                        className="min-w-32 shadow-md hover:shadow-lg transition-all duration-200"
-                    >
-                        <Save className="h-4 w-4 mr-2" />
+                <Group justify="center">
+                    <Button leftSection={<Save size={16} />} onClick={handleSave} className={styles.saveButton}>
                         保存设置
                     </Button>
-                </div>
-            </div>
+                </Group>
+            </Stack>
         </div>
     );
 };
