@@ -34,7 +34,7 @@ export const group = async () => {
             const groupId = await chrome.tabs.group({
                 tabIds: group[name],
             });
-            await chrome.tabGroups.update(groupId, {
+            chrome.tabGroups.update(groupId, {
                 collapsed: true,
                 title: name,
             });
@@ -48,12 +48,12 @@ export const group = async () => {
         const fixedGroupId = await chrome.tabs.group({
             tabIds: fixed,
         });
-        await chrome.tabGroups.update(fixedGroupId, {
+        chrome.tabGroups.update(fixedGroupId, {
             collapsed: false,
             title: 'fixed',
             color: 'red',
         });
-        await chrome.tabGroups.move(fixedGroupId, {
+        chrome.tabGroups.move(fixedGroupId, {
             index: 1,
         });
     }
@@ -62,11 +62,11 @@ export const group = async () => {
         const otherGroupId = await chrome.tabs.group({
             tabIds: other,
         });
-        await chrome.tabGroups.update(otherGroupId, {
+        chrome.tabGroups.update(otherGroupId, {
             collapsed: false,
             title: '其他',
         });
-        await chrome.tabGroups.move(otherGroupId, {
+        chrome.tabGroups.move(otherGroupId, {
             index: -1,
         });
     }
